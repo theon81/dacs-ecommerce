@@ -29,6 +29,8 @@ const Product = () => {
     fetchProductData();
   }, [productId, products])
 
+  const sizeOrder = ['S', 'M', 'L', 'XL', 'XXL'];
+
   return productData ? (
     <div className='border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
       {/* product data */}
@@ -72,13 +74,17 @@ const Product = () => {
             <div className='flex flex-col gap-4 my-8'>
               <p>Select Size</p>
               <div className='flex gap-2'>
-                {productData.sizes.map((item, index)=>(
-                  <button onClick={()=>setSize(item)} 
-                  className={`border py-2 px-4 bg-gray-100 ${
-                    item === size ? 'border-orange-500' : ''
-                  }`} 
-                  key={index}>{item}</button>
-                ))}
+                {[...productData.sizes]
+                  .sort((a, b) => sizeOrder.indexOf(a) - sizeOrder.indexOf(b))
+                  .map((item, index) => (
+                    <button
+                      onClick={() => setSize(item)}
+                      className={`border py-2 px-4 bg-gray-100 ${item === size ? 'border-orange-500' : ''}`}
+                      key={index}
+                    >
+                      {item}
+                    </button>
+                  ))}
               </div>
             </div>
                 
