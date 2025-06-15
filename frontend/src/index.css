@@ -28,4 +28,9 @@ a.active hr{
         color: white;
     }
   }
-  
+
+html,
+:host {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
