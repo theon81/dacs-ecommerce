@@ -96,15 +96,15 @@ const Collection = () => {
           </p>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Men'} onChange={handleCategoryChange} /> Men
+              <input className='w-3' type="checkbox" value={'Arknights'} onChange={handleCategoryChange} /> Arknights
             </p>
 
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Women'} onChange={handleCategoryChange} /> Women
+              <input className='w-3' type="checkbox" value={'Honkai: Star Rail'} onChange={handleCategoryChange} /> Honkai: Star Rail
             </p>
 
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Kids'} onChange={handleCategoryChange} /> Kids
+              <input className='w-3' type="checkbox" value={'Others'} onChange={handleCategoryChange} /> Others
             </p>
           </div>
         </div>
