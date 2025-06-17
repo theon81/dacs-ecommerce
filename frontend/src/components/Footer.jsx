@@ -15,7 +15,7 @@ const Footer = () => {
             </div>
 
             <div>
-                <p className='text-xl font-medium mb-5'>COMPANY</p>
+                <p className='text-xl font-medium mb-5'>TEAM</p>
                 <ul className='flex flex-col gap-1 text-gray-600'>
                     <li>Home</li>
                     <li>About Us</li>
@@ -25,7 +25,7 @@ const Footer = () => {
             </div>
 
             <div>
-                <p className='text-xl font-medium mb-5'>Get in touch</p>
+                <p className='text-xl font-medium mb-5'>GET IN TOUCH</p>
                 <ul className='flex flex-col gap-1 text-gray-600'>
                     <li>123 456789</li>
                     <li>contact@diversitors.com</li>
