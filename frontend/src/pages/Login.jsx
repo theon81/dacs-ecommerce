@@ -54,29 +54,29 @@ const Login = () => {
   return (
     <form onSubmit={onSubmitHandler} className='flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800'>
       <div className='inline-flex items-center gap-2 mb-2 mt-10'>
-        <p className='prata-regular text-3xl'>{currentState}</p>
-        <hr className='border-none h-[1.5px] w-8 bg-gray-500' />
+        <p className='prata-regular text-3xl text-[#F0E9D2]'>{currentState}</p>
+        <hr className='border-none h-[1.5px] w-8 bg-[#E6DDC4]' />
       </div>
-      {currentState === 'Login' ? '' : <input onChange={(e)=>setName(e.target.value)} value={name} type="text" className='w-full px-3 py-2 border border-gray-800' placeholder='Name' required/>}
-      <input onChange={(e)=>setEmail(e.target.value)} value={email} type="email" className='w-full px-3 py-2 border border-gray-800' placeholder='Email' required/>
-      <input onChange={(e)=>setPassword(e.target.value)} value={password} type="password" className='w-full px-3 py-2 border border-gray-800' placeholder='Password' required/>
+      {currentState === 'Login' ? '' : <input onChange={(e)=>setName(e.target.value)} value={name} type="text" className='w-full px-3 py-2 border border-[#E6DDC4] bg-[#F0E9D2] text-[#181D31]' placeholder='Name' required/>}
+      <input onChange={(e)=>setEmail(e.target.value)} value={email} type="email" className='w-full px-3 py-2 border border-[#E6DDC4] bg-[#F0E9D2] text-[#181D31]' placeholder='Email' required/>
+      <input onChange={(e)=>setPassword(e.target.value)} value={password} type="password" className='w-full px-3 py-2 border border-[#E6DDC4] bg-[#F0E9D2] text-[#181D31]' placeholder='Password' required/>
       <div className='w-full flex justify-between text-sm mt-[-8px]'>
         {
           currentState === 'Login'
-            ? <p onClick={() => setCurrentState('Sign Up')} className='cursor-pointer'>Create account</p>
-            : <p onClick={() => setCurrentState('Login')} className='cursor-pointer'>Login here</p>
+            ? <p onClick={() => setCurrentState('Sign Up')} className='cursor-pointer text-[#F0E9D2]'>Create account</p>
+            : <p onClick={() => setCurrentState('Login')} className='cursor-pointer text-[#F0E9D2]'>Login here</p>
         }
         {currentState === 'Login' && (
-          <p className='cursor-pointer'>
+          <p className='cursor-pointer text-[#F0E9D2]'>
             Forgot your password?
           </p>
         )}
       </div>
 
-      <button className='bg-black text-white font-light px-8 py-4 mt-4'>
+      <button className='bg-[#F0E9D2] text-[#181D31] font-light px-8 py-4 mt-4'>
         {currentState === 'Login' ? 'Login' : 'Sign Up'}
       </button>
-      <p className='mt-2'>Date: <span className='text-gray-400'>{new Date().toDateString()}</span></p>
+      <p className='mt-2 text-[#678983]'>Date: <span className='text-[#E6DDC4]'>{new Date().toDateString()}</span></p>
         
     </form>
   )
