@@ -77,15 +77,48 @@ const removeProduct = async (req, res) => {
 // function for single product info
 const singleProduct = async (req, res) => {
     try {
-
         const { productId } = req.body;
-        const product = await productModel.findById(productId);
-        res.json({ success: true, product })
 
+        console.log("Received productId:", productId); // Log để kiểm tra
+
+        if (!productId) {
+            return res.status(400).json({ success: false, message: "Product ID is required." });
+        }
+
+        const product = await productModel.findById(productId);
+
+        if (!product) {
+            return res.status(404).json({ success: false, message: "Product not found." });
+        }
+
+        res.json({ success: true, product });
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: error.message })
+        res.status(500).json({ success: false, message: error.message });
     }
 }
 
-export { listProducts, addProduct, removeProduct, singleProduct }
+// function for update product
+const updateProduct = async (req, res) => {
+  try {
+    const { id, name, description, price, category, subCategory, sizes, bestseller } = req.body;
+
+    const updatedData = {
+      name,
+      description,
+      price: Number(price),
+      category,
+      subCategory,
+      bestseller: bestseller === "true" ? true : false,
+      sizes: JSON.parse(sizes),
+    };
+
+    await productModel.findByIdAndUpdate(id, updatedData);
+    res.json({ success: true, message: "Product Updated" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+export { listProducts, addProduct, removeProduct, singleProduct, updateProduct }

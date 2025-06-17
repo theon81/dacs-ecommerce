@@ -1,124 +1,245 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { backendUrl } from '../App'
 
-const Edit = () => {
-  const { id } = useParams(); // Get item ID from route
+const Edit = ({ token }) => {
+  const { id } = useParams(); // Lấy ID sản phẩm từ URL
   const navigate = useNavigate();
-  const [itemData, setItemData] = useState(null); // State to store item data
-  const [loading, setLoading] = useState(true); // State to manage loading
 
+  const [productData, setProductData] = useState({
+    name: "",
+    description: "",
+    price: "",
+    category: "",
+    subCategory: "",
+    bestseller: false,
+    sizes: [],
+    image: [],
+  });
+
+  const [image1, setImage1] = useState(null);
+  const [image2, setImage2] = useState(null);
+  const [image3, setImage3] = useState(null);
+  const [image4, setImage4] = useState(null);
+
+  // Fetch thông tin sản phẩm hiện tại
   useEffect(() => {
-    const fetchItem = async () => {
-      try {
-        const response = await axios.get(`/api/items/${id}`);
-        setItemData(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching item:', error);
-        setLoading(false);
-      }
+    const fetchProduct = async () => {
+        if (!id) {
+            toast.error("Product ID is missing.");
+            return;
+        }
+
+        console.log("Sending productId:", id); // Log để kiểm tra
+
+        try {
+            const response = await axios.post(
+                backendUrl + '/api/product/single',
+                { productId: id },
+                { headers: { token } }
+            );
+            if (response.data.success) {
+                setProductData(response.data.product);
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("Failed to fetch product data.");
+        }
     };
 
-    fetchItem();
-  }, [id]);
+    fetchProduct();
+}, [id, token]);
 
-  const handleSubmit = async (e) => {
+  // Xử lý khi submit form
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/api/items/${id}`, itemData);
-      navigate('/list'); // Redirect to list page after successful edit
+      const formData = new FormData();
+      formData.append("id", id);
+      formData.append("name", productData.name);
+      formData.append("description", productData.description);
+      formData.append("price", productData.price);
+      formData.append("category", productData.category);
+      formData.append("subCategory", productData.subCategory);
+      formData.append("bestseller", productData.bestseller);
+      formData.append("sizes", JSON.stringify(productData.sizes));
+
+      image1 && formData.append("image1", image1);
+      image2 && formData.append("image2", image2);
+      image3 && formData.append("image3", image3);
+      image4 && formData.append("image4", image4);
+
+      const response = await axios.post(
+        backendUrl + '/api/product/update',
+        formData,
+        {
+          headers: {
+            token: token
+          }
+        }
+      );
+
+      if (response.data.success) {
+        toast.success("Product updated successfully!");
+        navigate("/list");
+      } else {
+        toast.error(response.data.message);
+      }
     } catch (error) {
-      console.error('Error updating item:', error);
+      console.error(error);
+      toast.error("Failed to update product.");
     }
   };
 
-  const handleCancel = () => {
-    navigate('/list'); // Navigate back to the list page
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProductData((prev) => ({ ...prev, [name]: value }));
   };
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (!itemData) {
-    return <p>Item not found.</p>;
-  }
+  const handleSizeChange = (size) => {
+    setProductData((prev) => ({
+      ...prev,
+      sizes: prev.sizes.includes(size)
+        ? prev.sizes.filter((item) => item !== size)
+        : [...prev.sizes, size],
+    }));
+  };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Edit Item</h1>
-
-      {/* Item Card */}
-      <div className="flex items-center gap-4 p-4 border rounded mb-6">
-        <img
-          src={itemData.image}
-          alt={itemData.name}
-          className="w-24 h-24 object-cover border"
-        />
-        <div>
-          <p className="text-lg font-bold">{itemData.name}</p>
-          <p className="text-sm text-gray-600">{itemData.category}</p>
-          <p className="text-sm text-gray-600">${itemData.price}</p>
+    <form onSubmit={onSubmitHandler} className="flex flex-col w-full items-start gap-3">
+      <div>
+        <p className="mb-2">Upload Image</p>
+        <div className="flex gap-2">
+          {[image1, image2, image3, image4].map((image, index) => (
+            <label key={index} htmlFor={`image${index + 1}`}>
+              <img
+                className="w-20 cursor-pointer"
+                src={
+                  image
+                    ? URL.createObjectURL(image)
+                    : productData.image?.[index] || "/placeholder.png"
+                }
+                alt=""
+              />
+              <input
+                type="file"
+                id={`image${index + 1}`}
+                hidden
+                onChange={(e) => {
+                  const setImage = [setImage1, setImage2, setImage3, setImage4][index];
+                  setImage(e.target.files[0]);
+                }}
+              />
+            </label>
+          ))}
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Name Field */}
+      <div className="w-full">
+        <p className="mb-2">Product Name</p>
+        <input
+          name="name"
+          value={productData.name}
+          onChange={handleInputChange}
+          className="w-full max-w-[500px] px-3 py-2"
+          type="text"
+          placeholder="Type here"
+          required
+        />
+      </div>
+
+      <div className="w-full">
+        <p className="mb-2">Product Description</p>
+        <textarea
+          name="description"
+          value={productData.description}
+          onChange={handleInputChange}
+          className="w-full max-w-[500px] px-3 py-2"
+          placeholder="Write content here"
+          required
+        />
+      </div>
+
+      <div className="flex flex-col sm:flex-row gap-2 w-full sm:gap-8">
         <div>
-          <label className="block text-sm font-medium">Name</label>
-          <input
-            type="text"
-            value={itemData.name}
-            onChange={(e) => setItemData({ ...itemData, name: e.target.value })}
-            className="w-full border px-3 py-2"
-            required
-          />
+          <p className="mb-2">Product Category</p>
+          <select
+            name="category"
+            value={productData.category}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2"
+          >
+            <option value="Arknights">Arknights</option>
+            <option value="Honkai: Star Rail">Honkai: Star Rail</option>
+            <option value="Others">Others</option>
+          </select>
         </div>
 
-        {/* Category Field */}
         <div>
-          <label className="block text-sm font-medium">Category</label>
-          <input
-            type="text"
-            value={itemData.category}
-            onChange={(e) => setItemData({ ...itemData, category: e.target.value })}
-            className="w-full border px-3 py-2"
-            required
-          />
+          <p className="mb-2">Sub Category</p>
+          <select
+            name="subCategory"
+            value={productData.subCategory}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2"
+          >
+            <option value="Available">Available</option>
+            <option value="OutOfStock">Out of Stock</option>
+          </select>
         </div>
 
-        {/* Price Field */}
         <div>
-          <label className="block text-sm font-medium">Price</label>
+          <p className="mb-2">Product Price</p>
           <input
+            name="price"
+            value={productData.price}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 sm:w-[120px]"
             type="number"
-            value={itemData.price}
-            onChange={(e) => setItemData({ ...itemData, price: e.target.value })}
-            className="w-full border px-3 py-2"
-            required
+            placeholder="25"
           />
         </div>
+      </div>
 
-        {/* Submit and Cancel Buttons */}
-        <div className="flex gap-4">
-          <button
-            type="submit"
-            onClick={handleSubmit}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            Save Changes
-          </button>
-          <button
-            type="button"
-            onClick={handleCancel}
-            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-          >
-            Cancel
-          </button>
+      <div>
+        <p className="mb-2">Product Sizes</p>
+        <div className="flex gap-3">
+          {["S", "M", "L", "XL", "XXL"].map((size) => (
+            <div key={size} onClick={() => handleSizeChange(size)}>
+              <p
+                className={`${
+                  productData.sizes.includes(size) ? "bg-pink-100" : "bg-slate-200"
+                } px-3 py-1 cursor-pointer`}
+              >
+                {size}
+              </p>
+            </div>
+          ))}
         </div>
-      </form>
-    </div>
+      </div>
+
+      <div className="flex gap-2 mt-2">
+        <input
+          type="checkbox"
+          id="bestseller"
+          checked={productData.bestseller}
+          onChange={() =>
+            setProductData((prev) => ({ ...prev, bestseller: !prev.bestseller }))
+          }
+        />
+        <label className="cursor-pointer" htmlFor="bestseller">
+          Add to bestseller
+        </label>
+      </div>
+
+      <button type="submit" className="w-28 py-3 mt-4 bg-black text-white">
+        UPDATE
+      </button>
+    </form>
   );
 };
 
