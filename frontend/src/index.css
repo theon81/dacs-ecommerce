@@ -34,3 +34,11 @@ html,
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
 }
+
+body {
+  @apply bg-[#181D31];
+}
+
+hr {
+  border-color: #E6DDC4;
+}

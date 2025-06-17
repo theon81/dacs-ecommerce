@@ -56,30 +56,30 @@ const Product = () => {
 
         {/* prod details */}
         <div className='flex-1 '>
-            <h1 className='font-medium text-2xl mt-2'>{productData.name}</h1>
+            <h1 className='font-medium text-2xl mt-2 text-[#E6DDC4]'>{productData.name}</h1>
             <div className='flex items-center gap-1 mt-2'>
               <img src={assets.star_icon} alt="" className="w-3 5" />
               <img src={assets.star_icon} alt="" className="w-3 5" />
               <img src={assets.star_icon} alt="" className="w-3 5" />
               <img src={assets.star_icon} alt="" className="w-3 5" />
               <img src={assets.star_dull_icon} alt="" className="w-3 5" />
-              <p className='pl-2'>(122)</p>
+              <p className='pl-2 text-[#F0E9D2]'>(267)</p>
             </div>
-            <p className='mt-5 text-3xl font-medium'>
+            <p className='mt-5 text-3xl font-medium text-[#E6DDC4]'>
               {productData.price}{currency}
             </p>
-            <p className='mt-5 text-gray-500 md:w-4/5'>
+            <p className='mt-5 text-[#E6DDC4] md:w-4/5'>
               {productData.description}
             </p>
-            <div className='flex flex-col gap-4 my-8'>
-              <p>Select Size</p>
+            <div className='flex flex-col gap-4 my-8 '>
+              <p className='text-[#F0E9D2]'>Select Size</p>
               <div className='flex gap-2'>
                 {[...productData.sizes]
                   .sort((a, b) => sizeOrder.indexOf(a) - sizeOrder.indexOf(b))
                   .map((item, index) => (
                     <button
                       onClick={() => setSize(item)}
-                      className={`border py-2 px-4 bg-gray-100 ${item === size ? 'border-orange-500' : ''}`}
+                      className={`border-4 py-2 px-4 bg-[#F0E9D2] text-[#181D31] ${item === size ? 'border-[#678983]' : ''}`}
                       key={index}
                     >
                       {item}
@@ -90,13 +90,13 @@ const Product = () => {
                 
             <button 
               onClick={() => addToCart(productData._id, size)} 
-              className={`py-3 px-8 text-sm ${productData.subCategory === 'OutOfStock' ? 'bg-gray-400 cursor-not-allowed' : 'bg-black text-white active:bg-gray-700'}`}
+              className={`py-3 px-8 text-sm text-[#181D31] ${productData.subCategory === 'OutOfStock' ? 'bg-[#E6DDC4] cursor-not-allowed' : 'bg-[#F0E9D2] text-[#181D31] active:bg-gray-700 active:text-[#F0E9D2]'}`}
               disabled={productData.subCategory === 'OutOfStock'}
             >
               {productData.subCategory === 'OutOfStock' ? 'OUT OF STOCK' : 'ADD TO CART'}
             </button>
             <hr className='mt-8 sm:w-4/5' />
-            <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
+            <div className='text-sm text-[#F0E9D2] mt-5 flex flex-col gap-1'>
                 <p>100% Original product.</p>
                 <p>Cash on delivery is available on this product.</p>
                 <p>Easy return and exchange policy within 7 days.</p>
@@ -107,14 +107,14 @@ const Product = () => {
       {/* desc and review */}
       <div className='mt-20'>
         <div className='flex'>
-          <b className='border px-5 py-3 text-sm'>
+          <b className='border border-[#E6DDC4] px-5 py-3 text-sm text-[#F0E9D2]'>
             Description
           </b>
-          <p className='border px-5 py-3 text-sm'>
+          <p className='border border-[#E6DDC4] px-5 py-3 text-sm text-[#F0E9D2]'>
             Reviews (7)
           </p>
         </div>
-        <div className='flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500'>
+        <div className='flex flex-col gap-4 border border-[#E6DDC4] px-6 py-6 text-sm text-[#F0E9D2]'>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. 
             Hic numquam fugit quasi, est impedit asperiores repellat vel ipsa esse at ullam commodi, 
