@@ -10,8 +10,8 @@ const Footer = () => {
             </div>
 
             <div>
-                <p className='text-xl font-medium mb-5 text-[#E6DDC4]'>TEAM</p>
-                <ul className='flex flex-col gap-1 text-[#F0E9D2]'>
+                <p className='text-xl font-medium mb-5 text-[#352F44]'>TEAM</p>
+                <ul className='flex flex-col gap-1 text-[#5C5470]'>
                     <li>Home</li>
                     <li>About Us</li>
                     <li>Delivery</li>
@@ -20,8 +20,8 @@ const Footer = () => {
             </div>
 
             <div>
-                <p className='text-xl font-medium mb-5 text-[#E6DDC4]'>GET IN TOUCH</p>
-                <ul className='flex flex-col gap-1 text-[#F0E9D2]'>
+                <p className='text-xl font-medium mb-5 text-[#352F44]'>GET IN TOUCH</p>
+                <ul className='flex flex-col gap-1 text-[#5C5470]'>
                     <li>123 456789</li>
                     <li>contact@diversitors.com</li>
                 </ul>
@@ -30,7 +30,7 @@ const Footer = () => {
 
         <div>
             <hr />
-            <p className='py-5 text-sm text-center text-[#E6DDC4]'>Copyright 2025@ diversitorsPNK.com - All Rights Reserved.</p>
+            <p className='py-5 text-sm text-center text-[#5C5470]'>Copyright 2025@ diversitorsPNK.com - All Rights Reserved.</p>
         </div>
     </div>
   )

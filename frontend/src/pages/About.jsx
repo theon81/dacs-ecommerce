@@ -13,7 +13,7 @@ const About = () => {
       
       <div className='my-10 flex flex-col md:flex-row gap-16'>
         <img className='w-full md:max-w-[450px]' src={assets.logo} alt="" />
-        <div className='flex flex-col justify-center gap-6 md:w-2/4 text-[#F0E9D2]'>
+        <div className='flex flex-col justify-center gap-6 md:w-2/4 text-[#5C5470]'>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
             Fuga excepturi repellendus maiores labore nulla asperiores a, 
             voluptates praesentium unde non tempora magni tempore, mollitia 
@@ -22,7 +22,7 @@ const About = () => {
             Odio est praesentium deleniti, placeat a animi suscipit molestias 
             eveniet non beatae velit laborum doloribus ut neque quod repellendus 
             corrupti unde fuga?</p>
-          <b className='text-[#678983]'>Our Mission</b>
+          <b className='text-[#352F44]'>Our Mission</b>
           <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
             Magnam nisi illum nemo laboriosam eos placeat minus eligendi 
             accusantium, architecto adipisci consequuntur error eius culpa,
@@ -35,23 +35,23 @@ const About = () => {
       </div>
 
       <div className='flex flex-col md:flex-row text-sm mb-20'>
-        <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
-          <b className='text-[#678983]'>Quality Assurance:</b>
-          <p className='text-[#F0E9D2]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        <div className='border border-[#352F44] px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
+          <b className='text-[#352F44]'>Quality Assurance:</b>
+          <p className='text-[#5C5470]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
             Molestias, quibusdam ad! Assumenda qui dolore, excepturi eligendi adipisci 
             dolorem nesciunt quaerat, esse deserunt fuga laborum itaque nemo, sunt quia repellendus facere.</p>
         </div>
 
-        <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
-          <b className='text-[#678983]'>Convenience:</b>
-          <p className='text-[#F0E9D2]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        <div className='border border-[#352F44] px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
+          <b className='text-[#352F44]'>Convenience:</b>
+          <p className='text-[#5C5470]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
             Molestias, quibusdam ad! Assumenda qui dolore, excepturi eligendi adipisci 
             dolorem nesciunt quaerat, esse deserunt fuga laborum itaque nemo, sunt quia repellendus facere.</p>
         </div>
 
-        <div className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
-          <b className='text-[#678983]'>Exceptional Customer Service:</b>
-          <p className='text-[#F0E9D2]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        <div className='border border-[#352F44] px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'>
+          <b className='text-[#352F44]'>Exceptional Customer Service:</b>
+          <p className='text-[#5C5470]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
             Molestias, quibusdam ad! Assumenda qui dolore, excepturi eligendi adipisci 
             dolorem nesciunt quaerat, esse deserunt fuga laborum itaque nemo, sunt quia repellendus facere.</p>
         </div>
