@@ -8,10 +8,19 @@ const createToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET)
 }
 
+// security
+const MAX_LOGIN_ATTEMPTS = 5;
+const LOCK_TIME = 10 * 60 * 1000;
+
 // Route for user login
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
+
+        // Validate input fields
+        if (!email || !password) {
+            return res.json({ success: false, message: "Email and password are required" });
+        }
 
         const user = await userModel.findOne({ email });
 
@@ -19,19 +28,38 @@ const loginUser = async (req, res) => {
             return res.json({ success: false, message: "User doesn't exist" });
         }
 
+        // Check if the account is locked
+        if (user.lockUntil && user.lockUntil > Date.now()) {
+            return res.json({ success: false, message: "Account is locked. Try again in 10 minutes." });
+        }
+
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (isMatch) {
+            // Reset login attempts and lock status on successful login
+            user.loginAttempts = 0;
+            user.lockUntil = null;
+            await user.save();
+
             const token = createToken(user._id);
             res.json({ success: true, token });
         } else {
+            // Increment login attempts
+            user.loginAttempts += 1;
+
+            // Lock the account if login attempts exceed the maximum
+            if (user.loginAttempts >= MAX_LOGIN_ATTEMPTS) {
+                user.lockUntil = Date.now() + LOCK_TIME;
+            }
+
+            await user.save();
             res.json({ success: false, message: "Invalid credentials" });
         }
     } catch (error) {
         console.log(error);
         res.json({ success: false, message: error.message });
     }
-}
+};
 
 
 // Route for user register
