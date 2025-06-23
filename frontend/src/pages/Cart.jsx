@@ -52,15 +52,15 @@ const Cart = () => {
                   alt=""
                 />
                 <div>
-                  <p className="text-xs sm:text-lg font-medium text-[#F0E9D2]">
+                  <p className="text-xs sm:text-lg font-medium text-[#5C5470]">
                     {productData.name}
                   </p>
-                  <div className="flex items-center gap-5 mt-2 text-[#F0E9D2]">
+                  <div className="flex items-center gap-5 mt-2 text-[#5C5470]">
                     <p>
                       {productData.price}
                       {currency}
                     </p>
-                    <p className="px-2 sm:px-3 sm:py-1 bg-[#E6DDC4] text-[#181D31]">
+                    <p className="px-2 sm:px-3 sm:py-1 bg-[#B9B4C7] text-[#FAF0E6]">
                       {item.size}
                     </p>
                   </div>
@@ -76,7 +76,7 @@ const Cart = () => {
                         Number(e.target.value)
                       )
                 }
-                className="bg-[#E6DDC4] text-[#181D31] max-w-10 sm:max-w-20 px-1 sm:px-2 py-1"
+                className="bg-[#B9B4C7] text-[#FAF0E6] max-w-10 sm:max-w-20 px-1 sm:px-2 py-1"
                 type="number"
                 min={1}
                 defaultValue={item.quantity}
@@ -98,7 +98,7 @@ const Cart = () => {
           <div className="w-full text-end">
             <button
               onClick={() => navigate("/place-order")}
-              className="bg-[#F0E9D2] text-[#181D31] text-sm my-8 px-8 py-3"
+              className="bg-[#5C5470] text-[#FAF0E6] text-sm my-8 px-8 py-3"
             >
               CHECKOUT
             </button>

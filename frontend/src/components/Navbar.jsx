@@ -22,22 +22,22 @@ const Navbar = () => {
       
         <Link to='/'><img src={assets.dvrlogo} className='h-16' alt="" /></Link>
 
-        <ul className='hidden sm:flex gap-5 text-sm text-[#F0E9D2]'>
+        <ul className='hidden sm:flex gap-5 text-sm text-[#5C5470]'>
             <NavLink to='/' className='flex flex-col items-center gap-1'>
                 <p>HOME</p>
-                <hr className='w-2/4 border-none h-[1.5px] bg-[#F0E9D2] hidden' />
+                <hr className='w-2/4 border-none h-[1.5px] bg-[#352F44] hidden' />
             </NavLink>
             <NavLink to='/collection' className='flex flex-col items-center gap-1'>
                 <p>COLLECTION</p>
-                <hr className='w-2/4 border-none h-[1.5px] bg-[#F0E9D2] hidden' />
+                <hr className='w-2/4 border-none h-[1.5px] bg-[#352F44] hidden' />
             </NavLink>
             <NavLink to='/about' className='flex flex-col items-center gap-1'>
                 <p>ABOUT</p>
-                <hr className='w-2/4 border-none h-[1.5px] bg-[#F0E9D2] hidden' />
+                <hr className='w-2/4 border-none h-[1.5px] bg-[#352F44] hidden' />
             </NavLink>
             <NavLink to='/contact' className='flex flex-col items-center gap-1'>
                 <p>CONTACT</p>
-                <hr className='w-2/4 border-none h-[1.5px] bg-[#F0E9D2] hidden' />
+                <hr className='w-2/4 border-none h-[1.5px] bg-[#352F44] hidden' />
             </NavLink>
         </ul>
 
@@ -49,16 +49,16 @@ const Navbar = () => {
                 {/* Dropdown menu */}
                 {token && 
                 <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
-                    <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
-                        <p className='cursor-pointer hover:text-black'>My Profile</p>
-                        <p onClick={()=> navigate('/orders')} className='cursor-pointer hover:text-black'>Orders</p>
-                        <p onClick={logout} className='cursor-pointer hover:text-black'>Logout</p>
+                    <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-[#B9B4C7] text-[#352F44] rounded'>
+                        <p className='cursor-pointer hover:text-[#FAF0E6]'>My Profile</p>
+                        <p onClick={()=> navigate('/orders')} className='cursor-pointer hover:text-[#FAF0E6]'>Orders</p>
+                        <p onClick={logout} className='cursor-pointer hover:text-[#FAF0E6]'>Logout</p>
                     </div>
                 </div>}
             </div>
             <Link to='/cart' className='relative'>
                 <img src={assets.cart_icon} className='w-5 min-w-5' alt="" />
-                <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>{getCartCount()}</p>
+                <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-[#352F44] text-[#FAF0E6] aspect-square rounded-full text-[8px]'>{getCartCount()}</p>
             </Link>
             <img
                 onClick={() => setVisible(true)}
@@ -69,8 +69,8 @@ const Navbar = () => {
         </div>
 
             {/* screen sidebar */}
-            <div className={`absolute top-0 left-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? 'w-full' : 'w-0'}`}>
-                <div className='flex flex-col text-gray-600'>
+            <div className={`absolute top-0 left-0 bottom-0 overflow-hidden bg-[#FAF0E6] transition-all ${visible ? 'w-full' : 'w-0'}`}>
+                <div className='flex flex-col text-[#5C5470]'>
                     <div onClick={()=>setVisible(false)} className='flex items-center gap-4 p-3 cursor-pointer'>
                         <img className='h-4 rotate-180' src={assets.dropdown_icon} alt="" />
                         <p>Back</p>

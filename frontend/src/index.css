@@ -36,9 +36,10 @@ html,
 }
 
 body {
-  @apply bg-[#181D31];
+  @apply bg-[#FAF0E6];
+  @apply border-[#352F44];
 }
 
 hr {
-  border-color: #E6DDC4;
+  border-color: #352F44;
 }
