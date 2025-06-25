@@ -155,28 +155,6 @@ describe('CSV-Based User Function Test Cases', () => {
     });
   });
 
-  describe('USER 009 - Subscribe for Discount', () => {
-    test('should apply 10% discount coupon for email subscription', async () => {
-      console.log('Test case: USER 009 - Subscribe for discount');
-      console.log('Expected: Successful subscription, 10% discount applied');
-      console.log('Status: Not Completed in CSV');
-      
-      // This would test email subscription and coupon application
-      expect(true).toBe(true); // Placeholder
-    });
-  });
-
-  describe('USER 010 - Subscribe without Email', () => {
-    test('should show error when subscribing without valid email', async () => {
-      console.log('Test case: USER 010 - Subscribe without email');
-      console.log('Expected: Error message, request valid email format');
-      console.log('Status: Not Completed in CSV');
-      
-      // This would test email validation for subscription
-      expect(true).toBe(true); // Placeholder
-    });
-  });
-
   describe('User Function Test Coverage', () => {
     test('should report user function test coverage from CSV', async () => {
       const totalCases = userTestCases.length;

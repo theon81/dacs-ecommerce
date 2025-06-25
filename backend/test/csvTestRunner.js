@@ -8,7 +8,7 @@ import path from 'path';
 const commands = {
   all: 'npm test',
   coverage: 'npm run test:coverage',
-  csv: 'npx jest csvBasedTests.test.js --verbose',
+  csv: 'npx jest csvBasedTests.test.js userFunctionTests.test.js --verbose',
   auth: 'npx jest --testNamePattern="Authentication|AUTH"',
   user: 'npx jest userFunctionTests.test.js --verbose',
   admin: 'npx jest adminFunctionTests.test.js --verbose',
@@ -23,17 +23,17 @@ function showHelp() {
   console.log('Available commands:');
   console.log('  node test/csvTestRunner.js all        - Run all tests');
   console.log('  node test/csvTestRunner.js coverage   - Run tests with coverage');
-  console.log('  node test/csvTestRunner.js csv        - Run CSV-generated tests');
-  console.log('  node test/csvTestRunner.js auth       - Run authentication tests');
-  console.log('  node test/csvTestRunner.js user       - Run user function tests');
-  console.log('  node test/csvTestRunner.js admin      - Run admin function tests');
+  console.log('  node test/csvTestRunner.js csv        - Run CSV tests (Auth + User functions)');
+  console.log('  node test/csvTestRunner.js auth       - Run authentication tests only');
+  console.log('  node test/csvTestRunner.js user       - Run user function tests only');
+  console.log('  node test/csvTestRunner.js admin      - Run admin function tests only');
   console.log('  node test/csvTestRunner.js login      - Run original login tests');
   console.log('  node test/csvTestRunner.js original   - Run original test suite');
   console.log('  node test/csvTestRunner.js help       - Show this help\n');
   
   console.log('Test Categories from CSV:');
   console.log('  • Authorization (AUTH 001-005): Login, logout, registration');
-  console.log('  • User Functions (USER 001-010): Cart, checkout, subscription');
+  console.log('  • User Functions (USER 001-008): Cart, checkout, order placement');
   console.log('  • Admin Functions (ADM 001-011): Product & order management\n');
   
   console.log('Test Status Summary:');
@@ -58,7 +58,7 @@ function runCommand(command) {
   try {
     console.log(`\nRunning: ${commands[command]}\n`);
     
-    if (command === 'csv' || command === 'user' || command === 'admin') {
+    if (command === 'csv' || command === 'user') {
       if (!checkCSVFile()) {
         return;
       }

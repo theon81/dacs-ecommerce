@@ -60,7 +60,7 @@ describe('CSV-Based Admin Function Test Cases', () => {
       expect(response.body.token).toBeDefined();
       
       adminToken = response.body.token;
-      console.log('✅ ADM 001: Admin login successful');
+      console.log('ADM 001: Admin login successful');
     });
   });
 
@@ -81,7 +81,7 @@ describe('CSV-Based Admin Function Test Cases', () => {
         expect(response.body.success).toBe(false);
         expect(response.body.token).toBeUndefined();
       }
-      console.log('✅ ADM 002: Admin login with missing fields properly rejected');
+      console.log('ADM 002: Admin login with missing fields properly rejected');
     });
   });
 
@@ -102,7 +102,7 @@ describe('CSV-Based Admin Function Test Cases', () => {
         expect(response.body.success).toBe(false);
         expect(response.body.token).toBeUndefined();
       }
-      console.log('✅ ADM 003: Admin login with wrong info properly rejected');
+      console.log('ADM 003: Admin login with wrong info properly rejected');
     });
   });
 
@@ -124,7 +124,7 @@ describe('CSV-Based Admin Function Test Cases', () => {
       expect(adminToken).toBeDefined();
       expect(typeof adminToken).toBe('string');
       
-      console.log('✅ ADM 004: Admin logout flow verified');
+      console.log('ADM 004: Admin logout flow verified');
     });
   });
 
@@ -150,7 +150,7 @@ describe('CSV-Based Admin Function Test Cases', () => {
       expect(productData.price).toBeGreaterThan(0);
       expect(productData.sizes).toContain('M');
       
-      console.log('✅ ADM 005: Product data structure validated');
+      console.log('ADM 005: Product data structure validated');
     });
   });
 
@@ -176,7 +176,7 @@ describe('CSV-Based Admin Function Test Cases', () => {
         expect(isValidName && isValidPrice).toBe(false);
       });
       
-      console.log('✅ ADM 006: Invalid product data properly detected');
+      console.log('ADM 006: Invalid product data properly detected');
     });
   });
 
@@ -197,7 +197,7 @@ describe('CSV-Based Admin Function Test Cases', () => {
       expect(editData.name).toBeDefined();
       expect(editData.price).toBeGreaterThan(0);
       
-      console.log('✅ ADM 007: Product edit data structure validated');
+      console.log('ADM 007: Product edit data structure validated');
     });
   });
 
@@ -222,7 +222,7 @@ describe('CSV-Based Admin Function Test Cases', () => {
         expect(isValidId && isValidName && isValidPrice).toBe(false);
       });
       
-      console.log('✅ ADM 008: Invalid product edit data properly detected');
+      console.log('ADM 008: Invalid product edit data properly detected');
     });
   });
 
@@ -238,7 +238,7 @@ describe('CSV-Based Admin Function Test Cases', () => {
       
       expect(deleteData.productId).toBeDefined();
       
-      console.log('✅ ADM 009: Product deletion data validated');
+      console.log('ADM 009: Product deletion data validated');
     });
   });
 
@@ -259,7 +259,7 @@ describe('CSV-Based Admin Function Test Cases', () => {
       const validStatuses = ['Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled'];
       expect(validStatuses).toContain(orderUpdateData.status);
       
-      console.log('✅ ADM 010: Order status update data validated');
+      console.log('ADM 010: Order status update data validated');
     });
   });
 
@@ -276,7 +276,7 @@ describe('CSV-Based Admin Function Test Cases', () => {
       
       expect(deleteOrderData.orderId).toBeDefined();
       
-      console.log('✅ ADM 011: Order deletion data validated');
+      console.log('ADM 011: Order deletion data validated');
     });
   });
 
@@ -288,7 +288,7 @@ describe('CSV-Based Admin Function Test Cases', () => {
       const notRunCases = adminTestCases.filter(tc => tc.status === 'Not Run').length;
       const notCompletedCases = adminTestCases.filter(tc => tc.status === 'Not Completed').length;
 
-      console.log('\n📊 Admin Function Test Coverage:');
+      console.log('\nAdmin Function Test Coverage:');
       console.log(`Total Admin Function Cases: ${totalCases}`);
       console.log(`Passed: ${passedCases}`);
       console.log(`Failed: ${failedCases}`);
@@ -296,7 +296,7 @@ describe('CSV-Based Admin Function Test Cases', () => {
       console.log(`Not Completed: ${notCompletedCases}`);
 
       // List specific test cases by status
-      console.log('\n📋 Admin Test Case Details:');
+      console.log('\nAdmin Test Case Details:');
       adminTestCases.forEach(tc => {
         console.log(`${tc.testId}: ${tc.description} - Status: ${tc.status}`);
       });
@@ -306,7 +306,7 @@ describe('CSV-Based Admin Function Test Cases', () => {
       // Calculate completion percentage
       const completedCases = passedCases + failedCases;
       const completionRate = (completedCases / totalCases) * 100;
-      console.log(`\n📈 Completion Rate: ${completionRate.toFixed(1)}%`);
+      console.log(`\nCompletion Rate: ${completionRate.toFixed(1)}%`);
     });
   });
 });
