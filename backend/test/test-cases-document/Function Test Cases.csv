@@ -1,0 +1,95 @@
+Function Test Cases,,,,,,,,
+,,,,,,,Passed,21
+,,,,,,,Failed,0
+,,,,,,,Not Run,1
+,,,,,,,Not Completed,4
+,,,,,,,Number of test cases,26
+,Category,Test Case ID,Test Case Description,Prerequisite,Test Procedures,,Test Case Expected Result,Status
+,,,,,Steps to Perform,Step Expected Result,,
+,Authorization,AUTH 001,Đăng nhập không hợp lệ,Người dùng nhập thiếu trường thông tin,"1. Điều hướng tới mục login
+2. Nhập thiếu trường tên đăng nhập hoặc mật khẩu
+3. Nhấn vào nút Login",Hiển thị thông báo lỗi,"Hiển thị thông báo lỗi thông tin đăng nhập
+Người dùng vẫn ở trang đăng nhập",Passed
+,,AUTH 002,Đăng nhập không hợp lệ,Người dùng nhập thông tin không hợp lệ,"1. Điều hướng tới mục login
+2. Nhập sai thông tin
+3. Nhấn vào nút Login",Hiển thị thông báo lỗi,"Hiển thị thông báo lỗi thông tin đăng nhập
+Người dùng vẫn ở trang đăng nhập",Passed
+,,AUTH 003,Đăng nhập thành công,Người dùng hợp lệ tồn tại trong cơ sở dữ liệu,"1. Điều hướng tới mục login
+2. Nhập username và mật khẩu hợp lệ
+3. Nhấn vào nút Login",Người dùng đăng nhập thành công và được chuyển tới giao diện,"Người dùng đăng nhập thành công và chuyển tới trang dashboard
+Quản trị viên/ thủ thư đăng nhập thành công và chuyển tới trang quản lý",Passed
+,,AUTH 004,Đăng ký thành công,Người dùng chưa có tài khoản,"1. Điều hướng tới mục Signup
+2. Điền thông tin tài khoản muốn tạo
+3. Nhấn vào nút Signup",Người dùng đăng ký thành công và chuyển hướng về trang đăng nhập,Người dùng đăng ký thành công và chuyển hướng về trang đăng nhập,Passed
+,,AUTH 005,Đăng xuất thành công,Người dùng đã đăng nhập,"1. Điều hướng tới mục logout
+2. Nhấn vào nút Logout",Người dùng đăng xuất thành công và chuyển hướng về trang đăng nhập ban đầu,Người dùng đăng xuất thành công và chuyển hướng về trang đăng nhập ban đầu,Passed
+,User Functions,USER 001,Người dùng thêm product hợp lệ ,N/A,"1. Điều hướng tới trang chính hoặc trang sản phẩm
+2. Nhấn vào sản phẩm
+3. Chọn size
+4. Thêm vào giỏ hàng","Sản phẩm được thêm vào giỏ hàng, cập nhật số đếm sản phẩm bên cạnh icon giỏ hàng","Sản phẩm được thêm vào giỏ hàng, cập nhật số đếm sản phẩm bên cạnh icon giỏ hàng",Passed
+,,USER 002,Người dùng muốn thêm sản phẩm hết hàng,N/A,"1. Điều hướng tới trang chính hoặc trang sản phẩm
+2. Nhấn vào sản phẩm không còn hàng
+3. Chọn size
+4. Thêm vào giỏ hàng","Nút thêm vào giỏ hàng bị tô xám, người dùng không được thêm vào giỏ hàng","Nút thêm vào giỏ hàng bị tô xám, người dùng không được thêm vào giỏ hàng",Passed
+,,USER 003,Người dùng xoá product đã thêm,Người dùng đã thêm thành công sản phẩm vào giỏ hàng,"1. Nhấn vào icon giỏ hàng
+2. Nhấn vào icon xoá sản phẩm đã thêm","Sản phẩm được xoá bỏ khỏi giỏ hàng, tổng giá tiền của giỏ hàng được tính toán lại","Sản phẩm được xoá bỏ khỏi giỏ hàng, tổng giá tiền của giỏ hàng được tính toán lại",Passed
+,,USER 004,Người dùng chỉnh sửa số lượng product đã thêm,Người dùng đã thêm thành công sản phẩm vào giỏ hàng,"1. Nhấn vào icon giỏ hàng
+2. Nhấn vào ô số lượng để thay đổi. Nhập từ bàn phím hoặc sử dụng nút bấm mũi tên để chỉnh tuần tự","Số lượng sản phẩm được thay đổi, tổng giá tiền của giỏ hàng được tính toán lại","Số lượng sản phẩm được thay đổi, tổng giá tiền của giỏ hàng được tính toán lại",Passed
+,,USER 005,Người dùng checkout khi chưa có sản phẩm nào,Người dùng chưa thêm sản phẩm vào giỏ hàng,"1. Nhấn vào icon giỏ hàng
+2. Nhấn vào nút `CHECK OUT` để thanh toán",Hiển thị thông báo lỗi,"Hiển thị thông báo lỗi thông tin giỏ hàng.
+Yêu cầu người dùng thêm sản phẩm hợp lệ vào giỏ hàng trước khi thanh toán",Not Completed
+,,USER 006,Người dùng checkout có sản phẩm,Người dùng đã thêm thành công sản phẩm hợp lệ vào giỏ hàng,"1. Nhấn vào icon giỏ hàng
+2. Nhấn vào nút `CHECK OUT` để thanh toán",Chuyển hướng tới trang điền thông tin của người dùng,Chuyển hướng tới trang điền thông tin của người dùng,Passed
+,,USER 007,Người dùng xác nhận đơn hàng,Người dùng đã điền thông tin hợp lệ và chọn phương thức thanh toán,"1. Điền đầy đủ thông tin hợp lệ vào các ô tương ứng
+2. Chọn phương thức thanh toán (chỉ cho phép COD)
+3. Nhấn vào nút `PLACE ORDER`",Thông báo đã đặt đơn hàng thành công và chuyển hướng tới trang xem trạng thái đơn hàng,Thông báo đã đặt đơn hàng thành công và chuyển hướng tới trang xem trạng thái đơn hàng,Passed
+,,USER 008,Người dùng xác nhận đơn hàng không thành công,Người dùng để trống các trường thông tin,"1. Để trống một hoặc nhiều ô thông tin
+2. Nhấn vào nút `PLACE ORDER`",Hiển thị thông báo lỗi,Hiển thị thông báo lỗi thông tin khách hàng và yêu cầu người dùng điền đầy đủ thông tin vào các trường thông tin,Not Run
+,,USER 009,"Người dùng nhấn ""đăng kí"" để được giảm giá và nhập thông tin email",N/A,"1. Kéo xuống cuối trang và chỉ tới mục subscribe thông tin mới nhất
+2. Điền email người dùng
+3. Nhấn vào nút `SUBSCRIBE`",Đăng ký thành công và áp dụng coupon giảm giá 10% cho đơn hàng đầu tiên của người dùng,Đăng ký thành công và áp dụng coupon giảm giá 10% cho đơn hàng đầu tiên của người dùng,Not Completed
+,,USER 010,"Người dùng nhấn ""đăng kí"" để được giảm giá mà không nhập thông tin email",N/A,"1. Kéo xuống cuối trang và chỉ tới mục subscribe thông tin mới nhất
+2. Để trống hoặc điền email không đúng định dạng
+3. Nhấn vào nút `SUBSCRIBE`",Hiển thị thông báo lỗi,Hiển thị thông báo lỗi thông tin email và yêu cầu người dùng nhập đủ và đúng định dạng,Not Completed
+,Admin Functions,ADM 001,Quản trị viên đăng nhập thành công,Quản trị viên hợp lệ tồn tại trong cơ sở dữ liệu,"1. Điều hướng tới mục login
+2. Nhập username và mật khẩu hợp lệ
+3. Nhấn vào nút Login",Quản trị viên đăng nhập thành công và được chuyển hướng tới trang quản lý,Quản trị viên đăng nhập thành công và được chuyển hướng tới trang quản lý,Passed
+,,ADM 002,Quản trị viên đăng nhập không thành công,Quản trị viên điền thiếu trường thông tin đăng nhập,"1. Điều hướng tới mục login
+2. Nhập thiếu trường tên đăng nhập hoặc mật khẩu
+3. Nhấn vào nút Login",Hiển thị thông báo lỗi,"Hiển thị thông báo lỗi thông tin đăng nhập
+Quản trị viên vẫn ở trang đăng nhập",Passed
+,,ADM 003,Quản trị viên đăng nhập không thành công,Quản trị viên điền sai thông tin đăng nhập,"1. Điều hướng tới mục login
+2. Nhập sai thông tin
+3. Nhấn vào nút Login",Hiển thị thông báo lỗi,"Hiển thị thông báo lỗi thông tin đăng nhập
+Quản trị viên vẫn ở trang đăng nhập",Passed
+,,ADM 004,Quản trị viên đăng xuất thành công,Quản trị viên đã được đăng nhập,"1. Điều hướng tới mục logout
+2. Nhấn vào nút Logout",Quản trị viên đăng xuất thành công,Quản trị viên đăng xuất thành công và được chuyển về trang đăng nhập ban đầu,Passed
+,,ADM 005,Quản trị viên thêm sản phẩm hợp lệ,Quản trị viên đã được đăng nhập,"1. Điều hướng tới tab thêm sản phẩm
+2. Upload ảnh sản phẩm
+3. Điền các thông tin hợp lệ
+4. Xác nhận đăng sản phẩm",Đăng sản phẩm thành công,"Hiển thị thông báo đăng sản phẩm thành công, sản phẩm được cập nhật vào cơ sở dữ liệu và hiển thị trên trang chính của website",Passed
+,,ADM 006,Quản trị viên thêm sản phẩm không hợp lệ,Quản trị viên điền thiếu hoặc sai định dạng thông tin sản phẩm,"1. Điều hướng tới tab thêm sản phẩm
+2. Điền thiếu hoặc sai định dạng thông tin sản phẩm
+3. Xác nhận đăng sản phẩm",Hiển thị thông báo lỗi,"Hiển thị thông báo lỗi thông tin sản phẩm.
+Yêu cầu quản trị viên điền đầy đủ và đúng định dạng thông tin cho sản phẩm",Passed
+,,ADM 007,Quản trị viên chỉnh sửa sản phẩm,Quản trị viên đã được đăng nhập,"1. Điều hướng tới tab danh sách sản phẩm
+2. Nhấn vào icon chỉnh sửa sản phẩm
+3. Thay đổi thông tin sản phẩm
+4. Xác nhận các chỉnh sửa",Chỉnh sửa sản phẩm thành công,"Hiển thị thông báo chỉnh sửa sản phẩm thành công.
+Sản phẩm được cập nhật trên cơ sở dữ liệu và được hiển thị với thông tin mới trên giao diện người dùng",Passed
+,,ADM 008,Quản trị viên chỉnh sửa sản phẩm không hợp lệ,Quản trị viên điền thiếu hoặc sai định dạng thông tin sản phẩm,"1. Điều hướng tới tab danh sách sản phẩm
+2. Nhấn vào icon chỉnh sửa sản phẩm
+3. Điền thiếu hoặc sai định dạng thông tin sản phẩm
+4. Xác nhận các chỉnh sửa",Hiển thị thông báo lỗi,"Hiển thị thông báo lỗi thông tin sản phẩm.
+Yêu cầu quản trị viên điền đầy đủ và đúng định dạng thông tin cho sản phẩm",Passed
+,,ADM 007,Quản trị viên xoá sản phẩm,Quản trị viên đã được đăng nhập,"1. Điều hướng tới tab danh sách sản phẩm
+2. Nhấn vào icon xoá sản phẩm
+3. Xác nhận xoá sản phẩm",Xoá sản phẩm thành công,"Hiển thị thông báo xoá sản phẩm thành công.
+Sản phẩm được xoá khỏi cơ sở dữ liệu và xoá khỏi giao diện người dùng",Passed
+,,ADM 008,Quản trị viên chỉnh sửa tình trạng đơn hàng,"Quản trị viên đã được đăng nhập.
+Phía khách hàng xác nhận đặt một hoặc nhiều đơn hàng","1. Điều hướng tới tab danh sách đơn hàng
+2. Nhấn vào dropdown tình trạng đơn hàng",Tình trạng đơn hàng được cập nhật thành công,Cập nhật tình trạng đơn hàng trên cơ sở dữ liệu và hiển thị trên trang `My Orders` của người dùng,Passed
+,,ADM 009,Quản trị viên xoá đơn hàng,"Quản trị viên đã được đăng nhập.
+Phía khách hàng xác nhận đặt một hoặc nhiều đơn hàng","1. Điều hướng tới tab danh sách đơn hàng
+2. Nhấn xoá đơn hàng
+3. Nhấn xác nhận xoá đơn hàng",Xoá đơn hàng thành công,Hiển thị thông báo xoá đơn hàng thành công. Xoá đơn hàng trên cơ sở dữ liệu và giao diện người dùng,Not Completed
