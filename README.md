@@ -55,7 +55,7 @@ npm run dev
 
 | Login  |  Home
 |:-:|:-:|
-| ![login](img/login.png) | ![home](img/home.png) |
+| ![login](img/Login.png) | ![home](img/Home.png) |
 
 | Collection  |  About
 |:-:|:-:|
@@ -63,7 +63,7 @@ npm run dev
 
 | Product  |  Cart
 |:-:|:-:|
-| ![product](img/product.png) | ![cart](img/cart.png) |
+| ![product](img/Product.png) | ![cart](img/cart.png) |
 
 | Contact  |  My Order 
 |:-:|:-:|
